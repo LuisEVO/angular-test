@@ -1,0 +1,31 @@
+<form [formGroup]="form" (ngSubmit)="submit()">
+  <mat-form-field appearance="outline">
+    <mat-label>Nombre</mat-label>
+    <input matInput type="text" formControlName="name">
+    <mat-error *ngIf="hasError('name', 'required')">Este campo es requerido</mat-error>
+    <mat-error *ngIf="hasError('name', 'onlyNumbersLetters')">Ingrese solo números y/o letras</mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Correo</mat-label>
+    <input matInput type="text" formControlName="email" placeholder="example@domain.com">
+    <mat-error *ngIf="hasError('email', 'required')">Este campo es requerido</mat-error>
+    <mat-error *ngIf="hasError('email', 'email')">Ingrese formato de correo</mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Telefono</mat-label>
+    <input matInput type="text" formControlName="phone" placeholder="+999999999">
+    <mat-error *ngIf="hasError('phone', 'required')">Este campo es requerido</mat-error>
+    <mat-error *ngIf="hasError('phone', 'prefixPhone')">Ingrese el simbolo + adelante</mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Mensaje</mat-label>
+    <textarea matInput type="text" formControlName="message"></textarea>
+    <mat-error *ngIf="hasError('message', 'required')">Este campo es requerido</mat-error>
+    <mat-error *ngIf="hasError('message', 'maxlength')">El maximo de caracteres permitidos es {{ messageMaxLength }}</mat-error>
+  </mat-form-field>
+
+  <button type="submit" mat-raised-button color="primary">Enviar</button>
+</form>

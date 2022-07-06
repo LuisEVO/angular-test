@@ -1,0 +1,26 @@
+:host {
+  display: block;
+  height: 100vh;
+  width: 100vw;
+
+  mat-toolbar {
+    height: 56px;
+  }
+
+  mat-drawer {
+    width: 250px;
+  }
+
+  .body {
+    height: calc(100vh - 56px);
+    padding-top: 1rem;
+  }
+
+  .container {
+    padding-inline: 2rem;
+  }
+
+  .active {
+    color: #4050b5;
+  }
+}

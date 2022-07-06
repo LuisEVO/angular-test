@@ -1,9 +1,10 @@
 import { AfterViewInit, Component, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-import { finalize, map, merge, startWith, switchMap, tap } from 'rxjs';
+import { merge, startWith, switchMap, tap } from 'rxjs';
 import { MoviesHttp } from 'src/app/features/movies/http/movies.http';
 import { Movie } from '../../interfaces/movie.interface';
+import { LayoutService } from '../../../../core/layout/layout.service';
 
 @Component({
   templateUrl: './movies.view.html',
@@ -22,7 +23,12 @@ export class MoviesView implements AfterViewInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private moviesHttp: MoviesHttp) {}
+  constructor(
+    private layoutService: LayoutService,
+    private moviesHttp: MoviesHttp
+  ) {
+    this.layoutService.setTitle('Bienvenidos')
+  }
 
   ngAfterViewInit() {
     this.sort.sortChange.subscribe(() => (this.paginator.pageIndex = 0));
@@ -42,10 +48,10 @@ export class MoviesView implements AfterViewInit {
           })
         }),
         tap(paginatedMovies => {
+          this.isLoading = false;
           this.movies = paginatedMovies.items;
           this.total = paginatedMovies.total;
         }),
-        finalize(() => this.isLoading = false),
       )
       .subscribe();
   }

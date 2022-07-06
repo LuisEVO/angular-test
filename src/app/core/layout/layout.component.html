@@ -1,0 +1,24 @@
+<mat-toolbar color="primary" class="mat-elevation-z8">
+  <span>{{ $title | async }}</span>
+</mat-toolbar>
+
+<mat-drawer-container class="body">
+  <mat-drawer #drawer mode="side" [opened]="true">
+    <mat-nav-list>
+      <mat-list-item routerLink="/movies" routerLinkActive="active">
+        <mat-icon matIcon>home</mat-icon>
+        <span matLine>Inicio</span>
+      </mat-list-item>
+
+      <mat-list-item routerLink="/contact-form" routerLinkActive="active">
+        <mat-icon matIcon>fact_check</mat-icon>
+        <span matLine>Formulario de Contacto</span>
+      </mat-list-item>
+    </mat-nav-list>
+  </mat-drawer>
+  <mat-drawer-content>
+    <div class="container">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-drawer-content>
+</mat-drawer-container>

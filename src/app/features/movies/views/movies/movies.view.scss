@@ -1,3 +1,21 @@
-table {
-  width: 100%;
+:host {
+  display: block;
+  position: relative;
+
+  .loading {
+    background: rgba(0, 0, 0, 0.15);
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 4px;
+  }
+
+  table {
+    width: 100%;
+  }
 }

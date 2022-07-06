@@ -1,4 +1,7 @@
-<div class="mat-elevation-z8">
+<div *ngIf="isLoading" class="loading">
+  <mat-spinner></mat-spinner>
+</div>
+<div>
   <table
     mat-table
     [dataSource]="movies"

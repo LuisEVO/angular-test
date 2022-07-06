@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
+import { Filters, JsonServerHttp, Paginate } from '@common/json-server-utils';
 import { Observable } from 'rxjs';
-import { JsonServerHttp } from 'src/app/common/http/json-server.http';
-import { FiltersList } from 'src/app/common/interfaces/filters-list.interface';
-import { Paginated } from 'src/app/common/interfaces/paginated';
 import { environment } from 'src/environments/environment';
 import { Movie } from '../interfaces/movie.interface';
 
@@ -14,7 +12,7 @@ export class MoviesHttp {
 
   constructor(private http: JsonServerHttp) { }
 
-  getAll(filters?: FiltersList): Observable<Paginated<Movie[]>> {
+  getAll(filters?: Filters): Observable<Paginate<Movie[]>> {
     return this.http.getPaginated<Movie[]>(this.endpoint, { filters })
   }
 }
