@@ -1,0 +1,38 @@
+<div class="mat-elevation-z8">
+  <table
+    mat-table
+    [dataSource]="movies"
+    matSort
+  >
+    <ng-container matColumnDef="title">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header width="40%">Titulo</th>
+      <td mat-cell *matCellDef="let row">{{row.title}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="year">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header width="10%">Año</th>
+      <td mat-cell *matCellDef="let row">{{row.year}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="cast">
+      <th mat-header-cell *matHeaderCellDef width="25%">Casting</th>
+      <td mat-cell *matCellDef="let row">
+        <span>{{row.cast?.join(', ') | slice:0:maxCharacters }}</span>
+        <span *ngIf="row.cast?.join(', ').length > maxCharacters">...</span>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="genres">
+      <th mat-header-cell *matHeaderCellDef width="25%">Generos</th>
+      <td mat-cell *matCellDef="let row">
+        <span>{{row.genres?.join(', ') | slice:0:maxCharacters }}</span>
+        <span *ngIf="row.genres?.join(', ').length > maxCharacters">...</span>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <mat-paginator [length]="total" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions"></mat-paginator>
+</div>
